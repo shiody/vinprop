@@ -24,8 +24,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+/* Property List */
+Route::resource('/property_list', 'PropertyListController');
+
 /* Tools */
 /* Location */
-Route::get('/tools/location', 'LocationController@index');
+Route::resource('/tools/location', 'LocationController');
 
 

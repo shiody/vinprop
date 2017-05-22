@@ -22,9 +22,9 @@ class LocationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-    	$locations = Location::paginate(10);
-        return view('location', ['locations' => $locations]);
+    	$locations = Location::orderBy('location_name', 'asc')->paginate(10);
+        return view('tools.location.index', ['locations' => $locations]);
     }
 }
