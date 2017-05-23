@@ -30,9 +30,9 @@
                             <thead>
                                 <tr>
                                     <th>Name</th>
-                                    <th>Location</th>
-                                    <th>Property Type</th>
                                     <th>List Type</th>
+                                    <th>Property Type</th>
+                                    <th>Location</th>
                                     <th>Created</th>
                                     <th>Action</th>
                                 </tr>
@@ -41,9 +41,9 @@
                                 @foreach ($properties as $property)
                                     <tr>
                                         <td style="vertical-align: middle;">{{ $property->prop_name }}</td>
-                                        <td style="vertical-align: middle;">{{ $property->prop_location_id }}</td>
-                                        <td style="vertical-align: middle;">{{ $property->prop_type_id }}</td>
-                                        <td style="vertical-align: middle;">{{ $property->prop_type_id }}</td>
+                                        <td style="vertical-align: middle;">{{ $property->list_type->list_type_name }}</td>
+                                        <td style="vertical-align: middle;">{{ $property->property_type->prop_type_name }}</td>
+                                        <td style="vertical-align: middle;">{{ $property->location->location_name }}</td>
                                         <td style="vertical-align: middle;">{{ $property->created_at}}</td>
                                         <td style="vertical-align: middle;">
                                             <a href="javascript:void(0)" class="btn btn-xs btn-warning btn-raised">

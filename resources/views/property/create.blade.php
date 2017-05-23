@@ -36,17 +36,25 @@
                                             <input type="text" class="form-control" id="prop_name" name="prop_name" placeholder="Property Name">
                                         </div>
                                     </div>
-                                    <!-- prop_type _id-->
+                                    <!-- prop_list_type_id -->
+                                    <div class="form-group">
+                                        <label for="prop_list_type_id" class="col-md-2 control-label">Type</label>
+                                        <div class="col-md-5">
+                                            <select class="form-control" id="prop_list_type_id" name="prop_list_type_id">
+                                                @foreach ($list_types as $list_type)
+                                                <option value="{{ $list_type->list_type_id }}">{{ $list_type->list_type_name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <!-- prop_type_id -->
                                     <div class="form-group">
                                         <label for="prop_type_id" class="col-md-2 control-label">Type</label>
                                         <div class="col-md-5">
                                             <select class="form-control" id="prop_type_id" name="prop_type_id">
-                                                <option selected>Choose Type</option>
-                                                <option value="1">Rumah</option>
-                                                <option>Apatemen</option>
-                                                <option>Ruko</option>
-                                                <option>Gudang</option>
-                                                <option>Kios</option>
+                                                @foreach ($property_types as $property_type)
+                                                <option value="{{ $property_type->prop_type_id }}">{{ $property_type->prop_type_name }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -55,12 +63,9 @@
                                         <label for="prop_location_id" class="col-md-2 control-label">Location</label>
                                         <div class="col-md-5">
                                             <select class="form-control" id="prop_location_id" name="prop_location_id">
-                                                <option selected>Choose Location</option>
-                                                <option value="1">Jakarta</option>
-                                                <option>Tangerang</option>
-                                                <option>BSD</option>
-                                                <option>Gading Serpong</option>
-                                                <option>Bekasi</option>
+                                                @foreach ($locations as $location)
+                                                <option value="{{ $location->location_id }}">{{ $location->location_name }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>

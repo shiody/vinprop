@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Property;
+use App\ListType;
+use App\PropertyType;
+use App\Location;
 
 class PropertyListController extends Controller
 {
@@ -35,7 +38,12 @@ class PropertyListController extends Controller
      */
     public function create()
     {
-        return view('property.create');
+        $list_types = ListType::all();
+        $property_types = PropertyType::all();
+        $locations = Location::all();
+        return view('property.create', ['list_types' => $list_types,
+            'property_types' => $property_types,
+            'locations' => $locations]);
     }
 
     /**

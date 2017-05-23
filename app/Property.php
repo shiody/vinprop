@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Property extends Model
 {
+	protected $table = 'properties';
+    protected $primaryKey = 'prop_id';
+
 	public $fillable = [
 						'prop_name',
 						'prop_type_id',
@@ -27,4 +30,19 @@ class Property extends Model
 						'prop_owner_name',
 						'prop_owner_contact'
 						];
+
+	public function list_type()
+	{
+		return $this->belongsTo(ListType::class, 'prop_list_type_id');
+	}
+
+	public function property_type()
+	{
+		return $this->belongsTo(PropertyType::class, 'prop_type_id');
+	}
+
+	public function location()
+	{
+		return $this->belongsTo(Location::class, 'prop_location_id');
+	}
 }
