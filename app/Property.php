@@ -7,13 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 class Property extends Model
 {
 	protected $table = 'properties';
-    protected $primaryKey = 'prop_id';
+    protected $primaryKey = 'prop_name';
+    public $incrementing = false;
 
 	public $fillable = [
 						'prop_name',
+						'prop_list_type_id',
 						'prop_type_id',
-						'prop_address',
 						'prop_location_id',
+						'prop_address',
 						'prop_bedroom',
 						'prop_bathroom',
 						'prop_maids_room',
@@ -27,8 +29,13 @@ class Property extends Model
 						'prop_certificate',
 						'prop_price',
 						'prop_fee',
+						'prop_user_id',
 						'prop_owner_name',
-						'prop_owner_contact'
+						'prop_owner_contact',
+						'prop_notes',
+						'prop_image',
+						'expired_at',
+						'status'
 						];
 
 	public function list_type()

@@ -38,7 +38,7 @@
                                     </div>
                                     <!-- prop_list_type_id -->
                                     <div class="form-group">
-                                        <label for="prop_list_type_id" class="col-md-2 control-label">Type</label>
+                                        <label for="prop_list_type_id" class="col-md-2 control-label">List Type</label>
                                         <div class="col-md-5">
                                             <select class="form-control" id="prop_list_type_id" name="prop_list_type_id">
                                                 @foreach ($list_types as $list_type)
@@ -49,7 +49,7 @@
                                     </div>
                                     <!-- prop_type_id -->
                                     <div class="form-group">
-                                        <label for="prop_type_id" class="col-md-2 control-label">Type</label>
+                                        <label for="prop_type_id" class="col-md-2 control-label">Property Type</label>
                                         <div class="col-md-5">
                                             <select class="form-control" id="prop_type_id" name="prop_type_id">
                                                 @foreach ($property_types as $property_type)
@@ -140,7 +140,8 @@
                                         <label for="prop_phone_lines" class="col-md-2 control-label">Phone Lines</label>
                                         <div class="col-md-1">
                                             <select class="form-control" id="prop_phone_lines" name="prop_phone_lines">
-                                                <option value="1" selected>1</option>
+                                                <option value="0" selected>0</option>
+                                                <option value="1">1</option>
                                                 <option value="2">2</option>
                                                 <option value="3">3</option>
                                                 <option value="4">4</option>
@@ -201,6 +202,17 @@
                                             <input type="text" class="form-control" id="prop_fee" name="prop_fee" placeholder="Fee (e.g. 2%)">
                                         </div>
                                     </div>
+                                    <!-- prop_user_id -->
+                                    <div class="form-group">
+                                        <label for="prop_user_id" class="col-md-2 control-label">Sales Name</label>
+                                        <div class="col-md-10">
+                                            <select class="form-control" id="prop_user_id" name="prop_user_id">
+                                                @foreach ($users as $user)
+                                                <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
                                     <!-- prop_owner_name -->
                                     <div class="form-group">
                                         <label for="prop_owner_name" class="col-md-2 control-label">Owner Name</label>
@@ -215,11 +227,26 @@
                                             <input type="text" class="form-control" id="prop_owner_contact" name="prop_owner_contact" placeholder="Owner Contact">
                                         </div>
                                     </div>
+                                    <!-- expired_at -->
+                                    <div class="form-group">
+                                        <label for="expired_at" class="col-md-2 control-label">Expired Date</label>
+                                        <div class="col-md-5" style="padding-top: 1em">
+                                            {!! Form::date('expired_at', \Carbon\Carbon::now()) !!}
+                                        </div>
+                                    </div>
                                     <!-- prop_notes -->
                                     <div class="form-group">
                                         <label for="prop_notes" class="col-md-2 control-label">Notes</label>
                                         <div class="col-md-10">
                                             <textarea class="form-control" rows="3" id="prop_notes" name="prop_notes"></textarea>
+                                        </div>
+                                    </div>
+                                    <!-- prop_image -->
+                                    <div class="form-group">
+                                        <label for="image" class="col-md-2 control-label">Image</label>
+                                        <div class="col-md-5">
+                                            <input type="text" readonly="" class="form-control" placeholder="Browse...">
+                                            {!! Form::file('image') !!}
                                         </div>
                                     </div>
                                     <!-- buttons -->
