@@ -52,4 +52,14 @@ class Property extends Model
 	{
 		return $this->belongsTo(Location::class, 'prop_location_id');
 	}
+
+	public function water_source()
+	{
+		return $this->belongsTo(WaterSource::class, 'prop_water_src_id');
+	}
+
+	public function user()
+	{
+		return $this->belongsTo(User::class, 'prop_user_id');
+	}
 }

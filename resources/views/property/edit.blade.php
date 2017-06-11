@@ -12,7 +12,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <!-- title -->
-                                    <h3 class="text-primary">Create New Property</h3>
+                                    <h3 class="text-primary">Edit Property</h3>
                                 </div>
                             </div>
                             <hr/>
@@ -22,13 +22,13 @@
                         <div class="col-md-10 col-md-offset-1">
                             <!-- property form -->
                             {{-- <form class="form-horizontal"> --}}
-                            {!! Form::open(['route'=>'property_list.store', 'method'=>'post', 'files'=>true, 'class'=>'form-horizontal']) !!}
+                            {!! Form::model($property, ['route'=>['property_list.update', $property->prop_name], 'method'=>'put', 'files'=>true, 'class'=>'form-horizontal']) !!}
                                 <fieldset>
                                     <!-- prop_name -->
                                     <div class="form-group">
                                         <label for="prop_name" class="col-md-2 control-label">Name</label>
                                         <div class="col-md-10">
-                                            <input type="text" class="form-control" id="prop_name" name="prop_name" placeholder="Property Name">
+                                            <input type="text" class="form-control" id="prop_name" name="prop_name" placeholder="Property Name" value="{{ $property->prop_name }}" readonly>
                                         </div>
                                     </div>
                                     <!-- prop_list_type_id -->
@@ -37,7 +37,7 @@
                                         <div class="col-md-5">
                                             <select class="form-control" id="prop_list_type_id" name="prop_list_type_id">
                                                 @foreach ($list_types as $list_type)
-                                                <option value="{{ $list_type->list_type_id }}">{{ $list_type->list_type_name }}</option>
+                                                <option value="{{ $list_type->list_type_id }}" @if ($list_type->list_type_id == $property->prop_list_type_id) selected @endif>{{ $list_type->list_type_name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -48,7 +48,7 @@
                                         <div class="col-md-5">
                                             <select class="form-control" id="prop_type_id" name="prop_type_id">
                                                 @foreach ($property_types as $property_type)
-                                                <option value="{{ $property_type->prop_type_id }}">{{ $property_type->prop_type_name }}</option>
+                                                <option value="{{ $property_type->prop_type_id }}" @if ($property_type->prop_type_id == $property->prop_type_id) selected @endif>{{ $property_type->prop_type_name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -59,7 +59,7 @@
                                         <div class="col-md-5">
                                             <select class="form-control" id="prop_location_id" name="prop_location_id">
                                                 @foreach ($locations as $location)
-                                                <option value="{{ $location->location_id }}">{{ $location->location_name }}</option>
+                                                <option value="{{ $location->location_id }}" @if ($location->location_id == $property->prop_location_id) selected @endif>{{ $location->location_name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -68,7 +68,7 @@
                                     <div class="form-group">
                                         <label for="prop_address" class="col-md-2 control-label">Address</label>
                                         <div class="col-md-10">
-                                            <input type="text" class="form-control" id="prop_address" name="prop_address" placeholder="Property Full Address">
+                                            <input type="text" class="form-control" id="prop_address" name="prop_address" placeholder="Property Full Address" value="{{ $property->prop_address }}">
                                         </div>
                                     </div>
                                     <!-- prop_bedroom -->
@@ -76,13 +76,13 @@
                                         <label for="prop_bedroom" class="col-md-2 control-label">Bedroom</label>
                                         <div class="col-md-1">
                                             <select class="form-control" id="prop_bedroom" name="prop_bedroom">
-                                                <option value="0" selected>0</option>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="5">5</option>
-                                                <option value="6">6</option>
+                                                <option value="0" @if ($property->prop_bedroom == 0) selected @endif>0</option>
+                                                <option value="1" @if ($property->prop_bedroom == 1) selected @endif>1</option>
+                                                <option value="2" @if ($property->prop_bedroom == 2) selected @endif>2</option>
+                                                <option value="3" @if ($property->prop_bedroom == 3) selected @endif>3</option>
+                                                <option value="4" @if ($property->prop_bedroom == 4) selected @endif>4</option>
+                                                <option value="5" @if ($property->prop_bedroom == 5) selected @endif>5</option>
+                                                <option value="6" @if ($property->prop_bedroom == 6) selected @endif>6</option>
                                             </select>
                                         </div>
                                     </div>
@@ -91,13 +91,13 @@
                                         <label for="prop_maids_room" class="col-md-2 control-label">Maids Room</label>
                                         <div class="col-md-1">
                                             <select class="form-control" id="prop_maids_room" name="prop_maids_room">
-                                                <option value="0" selected>0</option>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="5">5</option>
-                                                <option value="6">6</option>
+                                                <option value="0" @if ($property->prop_maids_room == 0) selected @endif>0</option>
+                                                <option value="1" @if ($property->prop_maids_room == 1) selected @endif>1</option>
+                                                <option value="2" @if ($property->prop_maids_room == 2) selected @endif>2</option>
+                                                <option value="3" @if ($property->prop_maids_room == 3) selected @endif>3</option>
+                                                <option value="4" @if ($property->prop_maids_room == 4) selected @endif>4</option>
+                                                <option value="5" @if ($property->prop_maids_room == 5) selected @endif>5</option>
+                                                <option value="6" @if ($property->prop_maids_room == 6) selected @endif>6</option>
                                             </select>
                                         </div>
                                     </div>
@@ -106,13 +106,13 @@
                                         <label for="prop_bathroom" class="col-md-2 control-label">Bathroom</label>
                                         <div class="col-md-1">
                                             <select class="form-control" id="prop_bathroom" name="prop_bathroom">
-                                                <option value="0" selected>0</option>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="5">5</option>
-                                                <option value="6">6</option>
+                                                <option value="0" @if ($property->prop_bathroom == 0) selected @endif>0</option>
+                                                <option value="1" @if ($property->prop_bathroom == 1) selected @endif>1</option>
+                                                <option value="2" @if ($property->prop_bathroom == 2) selected @endif>2</option>
+                                                <option value="3" @if ($property->prop_bathroom == 3) selected @endif>3</option>
+                                                <option value="4" @if ($property->prop_bathroom == 4) selected @endif>4</option>
+                                                <option value="5" @if ($property->prop_bathroom == 5) selected @endif>5</option>
+                                                <option value="6" @if ($property->prop_bathroom == 6) selected @endif>6</option>
                                             </select>
                                         </div>
                                     </div>
@@ -121,12 +121,12 @@
                                         <label for="prop_floor" class="col-md-2 control-label">Floor</label>
                                         <div class="col-md-1">
                                             <select class="form-control" id="prop_floor" name="prop_floor">
-                                                <option value="1" selected>1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="5">5</option>
-                                                <option value="6">6</option>
+                                                <option value="1" @if ($property->prop_floor == 1) selected @endif>1</option>
+                                                <option value="2" @if ($property->prop_floor == 2) selected @endif>2</option>
+                                                <option value="3" @if ($property->prop_floor == 3) selected @endif>3</option>
+                                                <option value="4" @if ($property->prop_floor == 4) selected @endif>4</option>
+                                                <option value="5" @if ($property->prop_floor == 5) selected @endif>5</option>
+                                                <option value="6" @if ($property->prop_floor == 6) selected @endif>6</option>
                                             </select>
                                         </div>
                                     </div>
@@ -135,13 +135,13 @@
                                         <label for="prop_phone_lines" class="col-md-2 control-label">Phone Lines</label>
                                         <div class="col-md-1">
                                             <select class="form-control" id="prop_phone_lines" name="prop_phone_lines">
-                                                <option value="0" selected>0</option>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="5">5</option>
-                                                <option value="6">6</option>
+                                                <option value="0" @if ($property->prop_phone_lines == 0) selected @endif>0</option>
+                                                <option value="1" @if ($property->prop_phone_lines == 1) selected @endif>1</option>
+                                                <option value="2" @if ($property->prop_phone_lines == 2) selected @endif>2</option>
+                                                <option value="3" @if ($property->prop_phone_lines == 3) selected @endif>3</option>
+                                                <option value="4" @if ($property->prop_phone_lines == 4) selected @endif>4</option>
+                                                <option value="5" @if ($property->prop_phone_lines == 5) selected @endif>5</option>
+                                                <option value="6" @if ($property->prop_phone_lines == 6) selected @endif>6</option>
                                             </select>
                                         </div>
                                     </div>
@@ -149,7 +149,7 @@
                                     <div class="form-group">
                                         <label for="prop_electricity" class="col-md-2 control-label">Electricity</label>
                                         <div class="col-md-5">
-                                            <input type="text" class="form-control" id="prop_electricity" name="prop_electricity" placeholder="Electricity (e.g. 1100)">
+                                            <input type="text" class="form-control" id="prop_electricity" name="prop_electricity" placeholder="Electricity (e.g. 1100)" value="{{ $property->prop_electricity}}">
                                         </div>
                                     </div>
                                     <!-- prop_water_src_id -->
@@ -158,7 +158,7 @@
                                         <div class="col-md-5">
                                             <select class="form-control" id="prop_water_src_id" name="prop_water_src_id">
                                                 @foreach ($water_sources as $water_source)
-                                                <option value="{{ $water_source->water_src_id }}">{{ $water_source->water_src_name }}</option>
+                                                <option value="{{ $water_source->water_src_id }}" @if ($water_source->water_src_id == $property->prop_water_src_id) selected @endif>{{ $water_source->water_src_name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -167,35 +167,35 @@
                                     <div class="form-group">
                                         <label for="prop_surface_area" class="col-md-2 control-label">Surface Area</label>
                                         <div class="col-md-5">
-                                            <input type="text" class="form-control" id="prop_surface_area" name="prop_surface_area" placeholder="Surface Area (e.g. 100)">
+                                            <input type="text" class="form-control" id="prop_surface_area" name="prop_surface_area" placeholder="Surface Area (e.g. 100)" value="{{ $property->prop_surface_area }}">
                                         </div>
                                     </div>
                                     <!-- prop_building_area -->
                                     <div class="form-group">
                                         <label for="prop_building_area" class="col-md-2 control-label">Building Area</label>
                                         <div class="col-md-5">
-                                            <input type="text" class="form-control" id="prop_building_area" name="prop_building_area" placeholder="Building Area (e.g. 80)">
+                                            <input type="text" class="form-control" id="prop_building_area" name="prop_building_area" placeholder="Building Area (e.g. 80)" value="{{ $property->prop_building_area }}">
                                         </div>
                                     </div>
                                     <!-- prop_certificate -->
                                     <div class="form-group">
                                         <label for="prop_certificate" class="col-md-2 control-label">Certificate</label>
                                         <div class="col-md-5">
-                                            <input type="text" class="form-control" id="prop_certificate" name="prop_certificate" placeholder="Property Certificate (e.g. SHM)">
+                                            <input type="text" class="form-control" id="prop_certificate" name="prop_certificate" placeholder="Property Certificate (e.g. SHM)" value="{{ $property->prop_certificate }}">
                                         </div>
                                     </div>
                                     <!-- prop_price -->
                                     <div class="form-group">
                                         <label for="prop_price" class="col-md-2 control-label">Price</label>
                                         <div class="col-md-5">
-                                            <input type="text" class="form-control" id="prop_price" name="prop_price" placeholder="Property Price">
+                                            <input type="text" class="form-control" id="prop_price" name="prop_price" placeholder="Property Price" value="{{ $property->prop_price }}">
                                         </div>
                                     </div>
                                     <!-- prop_fee -->
                                     <div class="form-group">
                                         <label for="prop_fee" class="col-md-2 control-label">Fee</label>
                                         <div class="col-md-5">
-                                            <input type="text" class="form-control" id="prop_fee" name="prop_fee" placeholder="Fee in percent (e.g. 2)">
+                                            <input type="text" class="form-control" id="prop_fee" name="prop_fee" placeholder="Fee in percent (e.g. 2)" value="{{ $property->prop_fee}}">
                                         </div>
                                     </div>
                                     <!-- prop_user_id -->
@@ -204,7 +204,7 @@
                                         <div class="col-md-10">
                                             <select class="form-control" id="prop_user_id" name="prop_user_id">
                                                 @foreach ($users as $user)
-                                                <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                                <option value="{{ $user->id }}" @if ($user->id == $property->prop_user_id) selected @endif>{{ $user->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -213,28 +213,28 @@
                                     <div class="form-group">
                                         <label for="prop_owner_name" class="col-md-2 control-label">Owner Name</label>
                                         <div class="col-md-10">
-                                            <input type="text" class="form-control" id="prop_owner_name" name="prop_owner_name" placeholder="Owner Name">
+                                            <input type="text" class="form-control" id="prop_owner_name" name="prop_owner_name" placeholder="Owner Name" value="{{ $property->prop_owner_name }}">
                                         </div>
                                     </div>
                                     <!-- prop_owner_contact -->
                                     <div class="form-group">
                                         <label for="prop_owner_contact" class="col-md-2 control-label">Owner Contact</label>
                                         <div class="col-md-5">
-                                            <input type="text" class="form-control" id="prop_owner_contact" name="prop_owner_contact" placeholder="Owner Contact">
+                                            <input type="text" class="form-control" id="prop_owner_contact" name="prop_owner_contact" placeholder="Owner Contact" value="{{ $property->prop_owner_contact }}">
                                         </div>
                                     </div>
                                     <!-- expired_at -->
                                     <div class="form-group">
                                         <label for="expired_at" class="col-md-2 control-label">Expired Date</label>
                                         <div class="col-md-5" style="padding-top: 1em">
-                                            {!! Form::date('expired_at', \Carbon\Carbon::now()) !!}
+                                            {!! Form::date('expired_at', \Carbon\Carbon::parse($property->expired_at)->format('Y-m-d')) !!}
                                         </div>
                                     </div>
                                     <!-- prop_notes -->
                                     <div class="form-group">
                                         <label for="prop_notes" class="col-md-2 control-label">Notes</label>
                                         <div class="col-md-10">
-                                            <textarea class="form-control" rows="3" id="prop_notes" name="prop_notes"></textarea>
+                                            <textarea class="form-control" rows="3" id="prop_notes" name="prop_notes">{{ $property->prop_notes }}</textarea>
                                         </div>
                                     </div>
                                     <!-- prop_image -->
@@ -243,13 +243,14 @@
                                         <div class="col-md-5">
                                             <input type="text" readonly="" class="form-control" placeholder="Browse...">
                                             {!! Form::file('image') !!}
+                                            <span>*old image will be repalced</span>
                                         </div>
                                     </div>
                                     <!-- buttons -->
                                     <div class="form-group">
                                         <div class="col-md-10 col-md-offset-2">
                                             <a href="{{ route('property_list.index') }}" class="btn btn-default">Cancel</a>
-                                            <button type="submit" class="btn btn-primary">Create</button>
+                                            <button type="submit" class="btn btn-primary">Update</button>
                                         </div>
                                     </div>
                                 </fieldset>
