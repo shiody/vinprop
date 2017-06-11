@@ -3,10 +3,10 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-10 col-md-offset-1">
+        <div class="col-md-12">
             <div class="panel panel-default">
                 <!-- panel body -->
-                <div class="panel-body">
+                <div class="panel-body" style="padding-left: 4em; padding-right: 4em;">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="row">
@@ -19,7 +19,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-10 col-md-offset-1">
+                        <div class="col-md-12">
                             <!-- property form -->
                             {{-- <form class="form-horizontal"> --}}
                             {!! Form::model($property, ['route'=>['property_list.update', $property->prop_name], 'method'=>'put', 'files'=>true, 'class'=>'form-horizontal']) !!}
@@ -200,7 +200,7 @@
                                     </div>
                                     <!-- prop_user_id -->
                                     <div class="form-group">
-                                        <label for="prop_user_id" class="col-md-2 control-label">Sales Name</label>
+                                        <label for="prop_user_id" class="col-md-2 control-label">Marketing Name</label>
                                         <div class="col-md-10">
                                             <select class="form-control" id="prop_user_id" name="prop_user_id">
                                                 @foreach ($users as $user)

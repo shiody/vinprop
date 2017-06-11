@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use App\Property;
 use App\ListType;
 use App\PropertyType;
@@ -33,11 +34,16 @@ class PropertyListController extends Controller
         $list_types = ListType::where('status', 1)->orderBy('list_type_name', 'asc')->get();
         $property_types = PropertyType::where('status', 1)->orderBy('prop_type_name', 'asc')->get();
         $locations = Location::where('status', 1)->orderBy('location_name', 'asc')->get();
+
         return view('property.index',
             ['properties' => $properties,
             'list_types' => $list_types,
             'property_types' => $property_types,
-            'locations' => $locations]);
+            'locations' => $locations,
+            'search_prop_name' => '',
+            'search_prop_list_type_id' => '',
+            'search_prop_type_id' => '',
+            'search_prop_location_id' => '']);
     }
 
     /**
@@ -216,5 +222,100 @@ class PropertyListController extends Controller
         Property::find($id)->delete();
         return redirect()->route('property.index')
                         ->with('success','Property deleted successfully');
+    }
+
+    /**
+     * Search resource from storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request)
+    {
+        $search_prop_name = $request->input('search_prop_name');
+        $search_prop_list_type_id = $request->input('search_prop_list_type_id');
+        $search_prop_type_id = $request->input('search_prop_type_id');
+        $search_prop_location_id = $request->input('search_prop_location_id');
+
+        $condition = array();
+
+        if ($search_prop_name != '')
+        {
+            $condition[] = ['prop_name', 'like', '%' . $search_prop_name . '%'];
+        }
+
+        if ($search_prop_list_type_id != '')
+        {
+            $condition[] = ['prop_list_type_id', '=', $search_prop_list_type_id];
+        }
+
+        if ($search_prop_type_id != '')
+        {
+            $condition[] = ['prop_type_id', '=', $search_prop_type_id];
+        }
+
+        if ($search_prop_location_id != '')
+        {
+            $condition[] = ['prop_location_id', '=', $search_prop_location_id];
+        }
+
+        Log::info($condition);
+
+        $properties = Property::where($condition)->orderBy('created_at', 'desc')->paginate(10);
+        $list_types = ListType::where('status', 1)->orderBy('list_type_name', 'asc')->get();
+        $property_types = PropertyType::where('status', 1)->orderBy('prop_type_name', 'asc')->get();
+        $locations = Location::where('status', 1)->orderBy('location_name', 'asc')->get();
+
+        return view('property.index',
+            ['properties' => $properties,
+            'list_types' => $list_types,
+            'property_types' => $property_types,
+            'locations' => $locations,
+            'search_prop_name' => $search_prop_name,
+            'search_prop_list_type_id' => $search_prop_list_type_id,
+            'search_prop_type_id' => $search_prop_type_id,
+            'search_prop_location_id' => $search_prop_location_id]);
+    }
+
+    /**
+     * Search and download resource from storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function download(Request $request)
+    {
+        $download_prop_name = $request->input('download_prop_name');
+        $download_prop_list_type_id = $request->input('download_prop_list_type_id');
+        $download_prop_type_id = $request->input('download_prop_type_id');
+        $download_prop_location_id = $request->input('download_prop_location_id');
+
+        $condition = array();
+
+        if ($download_prop_name != '')
+        {
+            $condition[] = ['prop_name', 'like', '%' . $download_prop_name . '%'];
+        }
+
+        if ($download_prop_list_type_id != '')
+        {
+            $condition[] = ['prop_list_type_id', '=', $download_prop_list_type_id];
+        }
+
+        if ($download_prop_type_id != '')
+        {
+            $condition[] = ['prop_type_id', '=', $download_prop_type_id];
+        }
+
+        if ($download_prop_location_id != '')
+        {
+            $condition[] = ['prop_location_id', '=', $download_prop_location_id];
+        }
+
+        Log::info($condition);
+
+        $properties = Property::where($condition)->orderBy('created_at', 'desc')->get();
+        $pdf = \PDF::loadView('property.pdf', ['properties' => $properties]);
+        return $pdf->setPaper('a4', 'landscape')->download('property_list.pdf');
     }
 }

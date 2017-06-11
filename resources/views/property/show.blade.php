@@ -3,10 +3,10 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-10 col-md-offset-1">
+        <div class="col-md-12">
             <div class="panel panel-default">
                 <!-- panel body -->
-                <div class="panel-body">
+                <div class="panel-body" style="padding-left: 4em; padding-right: 4em;">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="row">
@@ -16,7 +16,7 @@
                                 </div>
                                 <div class="col-md-2">
                                     <a href="{{ route('property_list.index') }}" class="btn btn-default pull-right">
-                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> cancel
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                     </a>
                                 </div>
                             </div>
