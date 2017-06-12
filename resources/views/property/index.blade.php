@@ -114,6 +114,7 @@
 </div>
 
 <script type="text/javascript">
+    // download pdf
     $("#download_btn").click(function(event) {
         event.preventDefault();
         $("#download_prop_name").val($("#search_prop_name").val());
