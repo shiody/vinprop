@@ -149,7 +149,7 @@
                                     <div class="form-group">
                                         <label for="prop_electricity" class="col-md-2 control-label">Electricity</label>
                                         <div class="col-md-5">
-                                            <input type="text" class="form-control" id="prop_electricity" name="prop_electricity" placeholder="Electricity (e.g. 1100)">
+                                            <input type="text" class="form-control number" id="prop_electricity" name="prop_electricity" placeholder="Electricity (e.g. 1100)">
                                         </div>
                                     </div>
                                     <!-- prop_water_src_id -->
@@ -167,14 +167,14 @@
                                     <div class="form-group">
                                         <label for="prop_surface_area" class="col-md-2 control-label">Surface Area</label>
                                         <div class="col-md-5">
-                                            <input type="text" class="form-control" id="prop_surface_area" name="prop_surface_area" placeholder="Surface Area (e.g. 100)">
+                                            <input type="text" class="form-control number" id="prop_surface_area" name="prop_surface_area" placeholder="Surface Area (e.g. 100)">
                                         </div>
                                     </div>
                                     <!-- prop_building_area -->
                                     <div class="form-group">
                                         <label for="prop_building_area" class="col-md-2 control-label">Building Area</label>
                                         <div class="col-md-5">
-                                            <input type="text" class="form-control" id="prop_building_area" name="prop_building_area" placeholder="Building Area (e.g. 80)">
+                                            <input type="text" class="form-control number" id="prop_building_area" name="prop_building_area" placeholder="Building Area (e.g. 80)">
                                         </div>
                                     </div>
                                     <!-- prop_certificate -->
@@ -188,14 +188,14 @@
                                     <div class="form-group">
                                         <label for="prop_price" class="col-md-2 control-label">Price</label>
                                         <div class="col-md-5">
-                                            <input type="text" class="form-control" id="prop_price" name="prop_price" placeholder="Property Price">
+                                            <input type="text" class="form-control number" id="prop_price" name="prop_price" placeholder="Property Price">
                                         </div>
                                     </div>
                                     <!-- prop_fee -->
                                     <div class="form-group">
                                         <label for="prop_fee" class="col-md-2 control-label">Fee</label>
                                         <div class="col-md-5">
-                                            <input type="text" class="form-control" id="prop_fee" name="prop_fee" placeholder="Fee in percent (e.g. 2)">
+                                            <input type="text" class="form-control number" id="prop_fee" name="prop_fee" placeholder="Fee in percent (e.g. 2)">
                                         </div>
                                     </div>
                                     <!-- prop_user_id -->

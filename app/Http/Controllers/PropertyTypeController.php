@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Location;
+use App\PropertyType;
 
-class LocationController extends Controller
+class PropertyTypeController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -18,14 +18,14 @@ class LocationController extends Controller
     }
 
     /**
-     * Show the location list.
+     * Show the property type list.
      *
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
     {
-    	$locations = Location::orderBy('created_at', 'desc')->paginate(10);
-        return view('tools.location.index', ['locations' => $locations]);
+    	$property_types = PropertyType::orderBy('created_at', 'desc')->paginate(10);
+        return view('tools.property_type.index', ['property_types' => $property_types]);
     }
 
     /**
@@ -35,7 +35,7 @@ class LocationController extends Controller
      */
     public function create()
     {
-        return view('tools.location.create');
+        return view('tools.property_type.create');
     }
 
     /**
@@ -47,19 +47,19 @@ class LocationController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'location_name' => 'required',
+            'prop_type_name' => 'required',
             'status' => 'required'
         ]);
 
-        $location = new Location([
-            'location_name' => $request->input('location_name'),
+        $property_type = new PropertyType([
+            'prop_type_name' => $request->input('prop_type_name'),
             'user_id' => \Auth::user()->id,
             'status' => $request->input('status')
             ]);
 
-        $location->save();
+        $property_type->save();
 
-        return redirect()->route('location.index')->with('success', 'Location created successfully');
+        return redirect()->route('property_type.index')->with('success', 'Property Type created successfully');
     }
 
     /**
@@ -70,9 +70,9 @@ class LocationController extends Controller
      */
     public function edit($id)
     {
-        $location = Location::find($id);
+        $property_type = PropertyType::find($id);
 
-        return view('tools.location.edit', ['location' => $location]);
+        return view('tools.property_type.edit', ['property_type' => $property_type]);
     }
 
     /**
@@ -85,15 +85,15 @@ class LocationController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'location_name' => 'required',
+            'prop_type_name' => 'required',
             'status' => 'required'
         ]);
 
-        $location = Location::find($id);
-        $location->status = $request->input('status');
+        $property_type = PropertyType::find($id);
+        $property_type->status = $request->input('status');
 
-        $location->save();
+        $property_type->save();
 
-        return redirect()->route('location.index')->with('success', 'Location updated successfully');
+        return redirect()->route('property_type.index')->with('success', 'Property Type updated successfully');
     }
 }

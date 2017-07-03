@@ -53,12 +53,14 @@
                                             <a id="download_btn" href="" class="btn btn-danger">
                                                 <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>
                                             </a>
+                                            @if (Auth::user()->role_id == '1')
                                             <a href="{{ route('property_list.create') }}" class="btn btn-primary">
                                                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                                             </a>
+                                            @endif
                                         </div>
                                     {!! Form::close() !!}
-                                    {!! Form::open(['url'=>'/property_list/download', 'method'=>'post', 'id'=>'download_form']) !!}
+                                    {!! Form::open(['url'=>'/property_list/list_download', 'method'=>'post', 'id'=>'download_form']) !!}
                                         <input type="hidden" id="download_prop_name" name="download_prop_name">
                                         <input type="hidden" id="download_prop_list_type_id" name="download_prop_list_type_id">
                                         <input type="hidden" id="download_prop_type_id" name="download_prop_type_id">
@@ -90,7 +92,7 @@
                                         <td style="vertical-align: middle;">{{ $property->list_type->list_type_name }}</td>
                                         <td style="vertical-align: middle;">{{ $property->property_type->prop_type_name }}</td>
                                         <td style="vertical-align: middle;">{{ $property->location->location_name }}</td>
-                                        <td style="vertical-align: middle;">{{ $property->created_at}}</td>
+                                        <td style="vertical-align: middle;">{{ \Carbon\Carbon::parse($property->created_at)->format('d-m-Y') }}</td>
                                         <td style="vertical-align: middle;">
                                             <a href="{{ route('property_list.show', $property->prop_name) }}" class="btn btn-xs btn-info btn-raised">
                                                 view

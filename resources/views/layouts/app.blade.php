@@ -49,7 +49,11 @@
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
-                    {{ menu('vinprop_menu', 'bootstrap') }}
+                    @if (Auth::user()->role_id == '1')
+                        {{ menu('vinprop_admin_menu', 'bootstrap') }}
+                    @elseif (Auth::user()->role_id == '2')
+                        {{ menu('vinprop_user_menu', 'bootstrap') }}
+                    @endif
 
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
@@ -93,6 +97,17 @@
     <script src="{{ asset('js/ripples.min.js') }}"></script>
     <script>
         $.material.init();
+
+        $('input.number').keyup(function(event) {
+          // skip for arrow keys
+          if(event.which >= 37 && event.which <= 40) return;
+          // format number
+          $(this).val(function(index, value) {
+            return value
+            .replace(/\D/g, "")
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+          });
+        });
     </script>
 </body>
 </html>

@@ -22,14 +22,21 @@ Route::group(['prefix' => 'admin'], function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'PropertyController@index');
 
 /* Property List */
-Route::resource('/property_list', 'PropertyListController');
-Route::post('/property_list/search', 'PropertyListController@search');
-Route::post('/property_list/download', 'PropertyListController@download');
+Route::resource('/property_list', 'PropertyController');
+Route::post('/property_list/search', 'PropertyController@search');
+Route::post('/property_list/list_download', 'PropertyController@list_download');
+Route::post('/property_list/single_download', 'PropertyController@single_download');
+
+/* Report */
+/* Expiring Properties */
+Route::get('/report/expiring_properties', 'PropertyController@expiring_list');
 
 /* Tools */
+/* Property Type */
+Route::resource('/tools/property_type', 'PropertyTypeController');
 /* Location */
 Route::resource('/tools/location', 'LocationController');
 
