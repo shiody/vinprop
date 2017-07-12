@@ -2,6 +2,16 @@
 
 @section('content')
 <div class="container">
+    @if ($message = Session::get('success'))
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-dismissible alert-info">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                    {{ $message }}
+            </div>
+        </div>
+    </div>
+    @endif
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
@@ -97,9 +107,11 @@
                                             <a href="{{ route('property_list.show', $property->prop_name) }}" class="btn btn-xs btn-info btn-raised">
                                                 view
                                             </a>
+                                            @if (Auth::user()->role_id == '1' || $property->prop_user_id == Auth::user()->id)
                                             <a href="{{ route('property_list.edit', $property->prop_name) }}" class="btn btn-xs btn-warning btn-raised">
                                                 edit
                                             </a>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach

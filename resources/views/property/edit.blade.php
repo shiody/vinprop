@@ -31,6 +31,8 @@
                                             <input type="text" class="form-control" id="prop_name" name="prop_name" placeholder="Property Name" value="{{ $property->prop_name }}" readonly>
                                         </div>
                                     </div>
+
+
                                     @if (Auth::user()->role_id == '1')
                                     <!-- prop_list_type_id -->
                                     <div class="form-group">
@@ -232,6 +234,8 @@
                                         </div>
                                     </div>
                                     @endif
+
+
                                     <!-- prop_notes -->
                                     <div class="form-group">
                                         <label for="prop_notes" class="col-md-2 control-label">Notes</label>
@@ -243,9 +247,18 @@
                                     <div class="form-group">
                                         <label for="image" class="col-md-2 control-label">Image</label>
                                         <div class="col-md-5">
-                                            <input type="text" readonly="" class="form-control" placeholder="Browse...">
-                                            {!! Form::file('image') !!}
-                                            <span>*old image will be repalced</span>
+                                            <div class="row">
+                                                @if ($property->prop_image != null)
+                                                <div class="col-md-12 thumbnail">
+                                                    <img class="img-responsive" src="{{ $property->prop_image }}">
+                                                </div>
+                                                @endif
+                                                <div class="col-md-12">
+                                                    <input type="text" readonly="" class="form-control" placeholder="Browse...">
+                                                    {!! Form::file('image') !!}
+                                                    <span class="text-info">*max size 2 MB, old image will be repalced</span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <!-- buttons -->

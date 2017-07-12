@@ -243,6 +243,7 @@
                                         <div class="col-md-5">
                                             <input type="text" readonly="" class="form-control" placeholder="Browse...">
                                             {!! Form::file('image') !!}
+                                            <span class="text-info">*max size 2 MB</span>
                                         </div>
                                     </div>
                                     <!-- buttons -->
