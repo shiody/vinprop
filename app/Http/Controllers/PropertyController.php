@@ -359,20 +359,61 @@ class PropertyController extends Controller
         $today_date = Carbon::today()->toDateString();
         $limit_date = Carbon::today()->addDays(30)->toDateString();
 
-        $properties = Property::whereNotNull('expired_at')
+        $condition = array();
+
+        if(\Auth::user()->role_id == '2')
+        {
+            $condition[] = ['prop_user_id', '=', \Auth::user()->id];
+        }
+
+        $properties = Property::where($condition)
+                        ->whereNotNull('expired_at')
                         ->whereBetween('expired_at', [$today_date, $limit_date])
                         ->orderBy('created_at', 'desc')
                         ->paginate(10);
 
+        return view('report.expiring_properties',
+            ['properties' => $properties,
+            'search_expiring_month' => '']);
+    }
+
+    /**
+     * Search resource from storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function expiring_search(Request $request)
+    {
+        $search_expiring_month = $request->input('search_expiring_month');
+        $today_date = Carbon::today()->toDateString();
+        $limit_date = Carbon::today()->addDays(30)->toDateString();
+
+        $properties = array();
+        $condition = array();
+
         if(\Auth::user()->role_id == '2')
         {
-            $properties = Property::where('prop_user_id', \Auth::user()->id)
+            $condition[] = ['prop_user_id', '=', \Auth::user()->id];
+        }
+
+        if ($search_expiring_month != '')
+        {
+            $properties = Property::where($condition)
+                        ->whereNotNull('expired_at')
+                        ->whereMonth('expired_at', $search_expiring_month)
+                        ->orderBy('created_at', 'desc')
+                        ->paginate(10);
+        } else {
+            $properties = Property::where($condition)
                         ->whereNotNull('expired_at')
                         ->whereBetween('expired_at', [$today_date, $limit_date])
                         ->orderBy('created_at', 'desc')
                         ->paginate(10);
         }
 
-        return view('report.expiring_properties', ['properties' => $properties]);
+        return view('report.expiring_properties',
+            ['properties' => $properties,
+            'search_expiring_month' => $search_expiring_month]);
     }
 }

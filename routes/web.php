@@ -33,6 +33,7 @@ Route::post('/property_list/single_download', 'PropertyController@single_downloa
 /* Report */
 /* Expiring Properties */
 Route::get('/report/expiring_properties', 'PropertyController@expiring_list');
+Route::post('/report/expiring_properties_search', 'PropertyController@expiring_search');
 
 /* Tools */
 /* Property Type */

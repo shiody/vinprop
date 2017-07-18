@@ -16,6 +16,34 @@
                                 </div>
                             </div>
                             <hr/>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    {!! Form::open(['url'=>'/report/expiring_properties_search', 'method'=>'post', 'class'=>'form-inline']) !!}
+                                        <div class="form-group col-md-2"><select class="form-control" id="search_expiring_month" name="search_expiring_month" style="width: 100%;">
+                                                <option value="">Default Range</option>
+                                                <option value="01" @if ($search_expiring_month == "01") selected @endif>January</option>
+                                                <option value="02" @if ($search_expiring_month == "02") selected @endif>February</option>
+                                                <option value="03" @if ($search_expiring_month == "03") selected @endif>March</option>
+                                                <option value="04" @if ($search_expiring_month == "04") selected @endif>April</option>
+                                                <option value="05" @if ($search_expiring_month == "05") selected @endif>May</option>
+                                                <option value="06" @if ($search_expiring_month == "06") selected @endif>June</option>
+                                                <option value="07" @if ($search_expiring_month == "07") selected @endif>July</option>
+                                                <option value="08" @if ($search_expiring_month == "08") selected @endif>August</option>
+                                                <option value="09" @if ($search_expiring_month == "09") selected @endif>September</option>
+                                                <option value="10" @if ($search_expiring_month == "10") selected @endif>October</option>
+                                                <option value="11" @if ($search_expiring_month == "11") selected @endif>November</option>
+                                                <option value="12" @if ($search_expiring_month == "12") selected @endif>December</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <button type="submit" class="btn btn-default">
+                                                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                            </button>
+                                        </div>
+                                    {!! Form::close() !!}
+                                </div>
+                            </div>
+                            <hr/>
                         </div>
                     </div>
                     <div class="row">
