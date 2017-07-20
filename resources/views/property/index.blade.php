@@ -91,6 +91,7 @@
                                     <th>List Type</th>
                                     <th>Property Type</th>
                                     <th>Location</th>
+                                    <th>Marketing</th>
                                     <th>Created</th>
                                     <th>Action</th>
                                 </tr>
@@ -102,6 +103,7 @@
                                         <td style="vertical-align: middle;">{{ $property->list_type->list_type_name }}</td>
                                         <td style="vertical-align: middle;">{{ $property->property_type->prop_type_name }}</td>
                                         <td style="vertical-align: middle;">{{ $property->location->location_name }}</td>
+                                        <td style="vertical-align: middle;">{{ $property->user->name }}</td>
                                         <td style="vertical-align: middle;">{{ \Carbon\Carbon::parse($property->created_at)->format('d-m-Y') }}</td>
                                         <td style="vertical-align: middle;">
                                             <a href="{{ route('property_list.show', $property->prop_name) }}" class="btn btn-xs btn-info btn-raised">
