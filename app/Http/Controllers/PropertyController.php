@@ -137,6 +137,7 @@ class PropertyController extends Controller
      */
     public function show($id)
     {
+        Log::info("show!!");
         $property = Property::find($id);
         return view('property.show', ['property' => $property]);
     }
@@ -232,9 +233,9 @@ class PropertyController extends Controller
      */
     public function destroy($id)
     {
+        Log::info("--> delete " . $id);
         Property::find($id)->delete();
-        return redirect()->route('property.index')
-                        ->with('success','Property deleted successfully');
+        return redirect()->route('property_list.index')->with('success','Property deleted successfully');
     }
 
     /**
