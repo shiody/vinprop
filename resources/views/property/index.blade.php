@@ -20,9 +20,15 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-8">
                                     <!-- title -->
                                     <h3 class="text-primary">Property List</h3>
+                                </div>
+                                <div class="col-md-4">
+                                    <!-- company logo -->
+                                    @if (Auth::user()->company_id != '')
+                                        <img class="img-responsive pull-right" src="{{ Auth::user()->company->company_logo }}">
+                                    @endif
                                 </div>
                             </div>
                             <hr/>

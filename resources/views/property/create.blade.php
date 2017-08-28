@@ -223,6 +223,16 @@
                                             <input type="text" class="form-control" id="prop_owner_contact" name="prop_owner_contact" placeholder="Owner Contact">
                                         </div>
                                     </div>
+                                    <!-- prop_rent_status -->
+                                    <div class="form-group">
+                                        <label for="prop_rent_status" class="col-md-2 control-label">Rent Status</label>
+                                        <div class="col-md-5">
+                                            <select class="form-control" id="prop_rent_status" name="prop_rent_status">
+                                                <option value="0">Available</option>
+                                                <option value="1">Rented</option>
+                                            </select>
+                                        </div>
+                                    </div>
                                     <!-- expired_at -->
                                     <div class="form-group">
                                         <label for="expired_at" class="col-md-2 control-label">Expired Date</label>
@@ -235,6 +245,13 @@
                                         <label for="prop_notes" class="col-md-2 control-label">Notes</label>
                                         <div class="col-md-10">
                                             <textarea class="form-control" rows="3" id="prop_notes" name="prop_notes"></textarea>
+                                        </div>
+                                    </div>
+                                    <!-- prop_user_notes -->
+                                    <div class="form-group">
+                                        <label for="prop_user_notes" class="col-md-2 control-label">Marketing Notes</label>
+                                        <div class="col-md-10">
+                                            <textarea class="form-control" rows="3" id="prop_user_notes" name="prop_user_notes"></textarea>
                                         </div>
                                     </div>
                                     <!-- prop_image -->

@@ -31,12 +31,20 @@ class PropertyController extends Controller
      */
     public function index(Request $request)
     {
-    	$properties = Property::orderBy('created_at', 'desc')->paginate(10);
+        $condition = array();
+
+
+        if(\Auth::user()->company_id != '')
+        {
+            $condition[] = ['prop_company_id', '=', \Auth::user()->company_id];
+        }
 
         if(\Auth::user()->role_id == '2')
         {
-            $properties = Property::where('prop_user_id', \Auth::user()->id)->orderBy('created_at', 'desc')->paginate(10);
+            $condition[] = ['prop_user_id', '=', \Auth::user()->id];
         }
+
+    	$properties = Property::where($condition)->orderBy('created_at', 'desc')->paginate(10);
 
         $list_types = ListType::where('status', 1)->orderBy('list_type_name', 'asc')->get();
         $property_types = PropertyType::where('status', 1)->orderBy('prop_type_name', 'asc')->get();
@@ -104,14 +112,17 @@ class PropertyController extends Controller
             'prop_surface_area' => str_replace(',', '', $request->input('prop_surface_area')),
             'prop_building_area' => str_replace(',', '', $request->input('prop_building_area')),
             'prop_certificate' => $request->input('prop_certificate'),
+            'prop_rent_status' => str_replace(',', '', $request->input('prop_rent_status')),
             'prop_price' => str_replace(',', '', $request->input('prop_price')),
             'prop_fee' => str_replace(',', '', $request->input('prop_fee')),
             'prop_user_id' => $request->input('prop_user_id'),
             'prop_owner_name' => $request->input('prop_owner_name'),
             'prop_owner_contact' => $request->input('prop_owner_contact'),
             'prop_notes' => $request->input('prop_notes'),
+            'prop_user_notes' => $request->input('prop_user_notes'),
             'expired_at' => $request->input('expired_at'),
-            'status' => 1
+            'status' => 1,
+            'prop_company_id' => \Auth::user()->company_id
             ]);
 
         if($request->hasFile('image'))
@@ -207,8 +218,11 @@ class PropertyController extends Controller
             $property->expired_at = $request->input('expired_at');
         }
 
+        $property->prop_rent_status = $request->input('prop_rent_status');
         $property->prop_notes = $request->input('prop_notes');
+        $property->prop_user_notes = $request->input('prop_user_notes');
         $property->status = 1;
+        $property->prop_company_id = \Auth::user()->company_id;
 
         if($request->hasFile('image'))
         {

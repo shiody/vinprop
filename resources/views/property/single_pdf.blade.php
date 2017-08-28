@@ -99,7 +99,43 @@
 								<td>Certificate</td>
 								<td class="info">{{ $property->prop_certificate }}</td>
 							</tr>
+							<tr>
+								<td>Notes</td>
+								<td class="info">{{ $property->prop_notes }}</td>
+							</tr>
 						</table>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<br/>
+						<hr/>
+						<br/>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+					<table>
+						<tr>
+							<td style="vertical-align: top;">
+								<img src="{{ ltrim(Auth::user()->company->company_logo, '/') }}">
+								<br/>
+								<p>
+									Mobile: {{ Auth::user()->phone }}
+								</p>
+							</td>
+							<td>
+								<h2>{{ Auth::user()->name }}</h2>
+								<p>
+									{{ Auth::user()->company->company_name }}<br/>
+									{{ Auth::user()->company->company_address }}<br/>
+									Phone: {{ Auth::user()->company->company_phone }}<br/>
+									Fax: {{ Auth::user()->company->company_fax }}<br/>
+									Email: {{ Auth::user()->company->company_email }}
+								</p>
+							</td>
+						</tr>
+					</table>
 					</td>
 				</tr>
 			</table>
