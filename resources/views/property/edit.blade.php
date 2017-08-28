@@ -226,7 +226,16 @@
                                             <input type="text" class="form-control" id="prop_owner_contact" name="prop_owner_contact" placeholder="Owner Contact" value="{{ $property->prop_owner_contact }}">
                                         </div>
                                     </div>
-                                     <!-- prop_rent_status -->
+                                    <!-- expired_at -->
+                                    <div class="form-group">
+                                        <label for="expired_at" class="col-md-2 control-label">Expired Date</label>
+                                        <div class="col-md-5" style="padding-top: 1em">
+                                            {!! Form::date('expired_at', \Carbon\Carbon::parse($property->expired_at)->format('Y-m-d')) !!}
+                                        </div>
+                                    </div>
+                                    @endif
+                                    
+                                    <!-- prop_rent_status -->
                                     <div class="form-group">
                                         <label for="prop_rent_status" class="col-md-2 control-label">Rent Status</label>
                                         <div class="col-md-5">
@@ -236,14 +245,6 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <!-- expired_at -->
-                                    <div class="form-group">
-                                        <label for="expired_at" class="col-md-2 control-label">Expired Date</label>
-                                        <div class="col-md-5" style="padding-top: 1em">
-                                            {!! Form::date('expired_at', \Carbon\Carbon::parse($property->expired_at)->format('Y-m-d')) !!}
-                                        </div>
-                                    </div>
-                                    @endif
                                     <!-- prop_notes -->
                                     <div class="form-group">
                                         <label for="prop_notes" class="col-md-2 control-label">Notes</label>

@@ -104,12 +104,26 @@
                                     <td>{{ $property->prop_fee }}&nbsp;%</td>
                                 </tr>
                                 <tr>
+                                    <td>Rent Status</td>
+                                    <td>
+                                        @if ($property->prop_rent_status == 0)
+                                            Available
+                                        @else
+                                            Rented
+                                        @endif
+                                    </td>
+                                </tr>
+                                <tr>
                                     <td>Expired Date</td>
                                     <td>{{ \Carbon\Carbon::parse($property->expired_at)->format('d-m-Y') }}</td>
                                 </tr>
                                 <tr>
                                     <td>Notes</td>
                                     <td>{{ $property->prop_notes }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Marketing Notes</td>
+                                    <td>{{ $property->prop_user_notes }}</td>
                                 </tr>
                             </table>
                         </div>

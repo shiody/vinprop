@@ -120,7 +120,7 @@
                                                 edit
                                             </a>
                                             @endif
-                                            @if (Auth::user()->role_id == '1')
+                                            @if (Auth::user()->role_id == '1' && $property->prop_rent_status != 1)
                                             {!! Form::open(['method' => 'DELETE', 'route' => ['property_list.destroy', $property->prop_name], 'style'=>'display:inline']) !!}
                                             {!! Form::submit('Delete', ['class' => 'btn btn-xs btn-danger btn-raised']) !!}
                                             {!! Form::close() !!}
