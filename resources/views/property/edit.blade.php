@@ -152,7 +152,7 @@
                                     <div class="form-group">
                                         <label for="prop_electricity" class="col-md-2 control-label">Electricity</label>
                                         <div class="col-md-5">
-                                            <input type="text" class="form-control number" id="prop_electricity" name="prop_electricity" placeholder="Electricity (e.g. 1100)" value="{{ number_format($property->prop_electricity) }}">
+                                            <input type="text" class="form-control number" id="prop_electricity" name="prop_electricity" placeholder="Electricity (e.g. 1100)" value="{{ $property->prop_electricity }}">
                                         </div>
                                     </div>
                                     <!-- prop_water_src_id -->
