@@ -36,9 +36,17 @@ Route::get('/report/expiring_properties', 'PropertyController@expiring_list');
 Route::post('/report/expiring_properties_search', 'PropertyController@expiring_search');
 
 /* Tools */
+/* List Type */
+Route::resource('/tools/list_type', 'ListTypeController');
 /* Property Type */
 Route::resource('/tools/property_type', 'PropertyTypeController');
 /* Location */
 Route::resource('/tools/location', 'LocationController');
+/* Water Source */
+Route::resource('/tools/water_source', 'WaterSourceController');
+/* Company */
+Route::resource('/tools/company_profile', 'CompanyController');
+/* Marketing */
+Route::resource('/tools/marketing_profile', 'MarketingController');
 
 

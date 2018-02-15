@@ -16,6 +16,6 @@ class PropertyType extends Model
      * @var array
      */
     protected $fillable = [
-        'prop_type_name', 'user_id', 'status',
+        'prop_type_name', 'user_id', 'status'
     ];
 }

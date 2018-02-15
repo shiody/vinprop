@@ -20,7 +20,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-10 col-md-offset-1">
-                            <!-- property form -->
+                            <!-- property type form -->
                             {{-- <form class="form-horizontal"> --}}
                             {!! Form::open(['route'=>'property_type.store', 'method'=>'post', 'files'=>true, 'class'=>'form-horizontal']) !!}
                                 <fieldset>

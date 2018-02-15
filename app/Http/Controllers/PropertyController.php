@@ -92,34 +92,35 @@ class PropertyController extends Controller
     {
         $this->validate($request, [
             'prop_name' => 'required',
+            'prop_user_id' => 'required',
             'image' => 'image|mimes:jpeg,png,jpg|max:2048'
         ]);
 
         $property = new Property([
-            'prop_name' => $request->input('prop_name'),
-            'prop_list_type_id' => $request->input('prop_list_type_id'),
-            'prop_type_id' => $request->input('prop_type_id'),
-            'prop_location_id' => $request->input('prop_location_id'),
-            'prop_address' => $request->input('prop_address'),
-            'prop_bedroom' => $request->input('prop_bedroom'),
-            'prop_bathroom' => $request->input('prop_bathroom'),
-            'prop_maids_room' => $request->input('prop_maids_room'),
-            'prop_floor' => $request->input('prop_floor'),
-            'prop_phone_lines' => $request->input('prop_phone_lines'),
-            'prop_electricity' => str_replace(',', '', $request->input('prop_electricity')),
-            'prop_direction_id' => $request->input('prop_direction_id'),
-            'prop_water_src_id' => $request->input('prop_water_src_id'),
-            'prop_surface_area' => str_replace(',', '', $request->input('prop_surface_area')),
-            'prop_building_area' => str_replace(',', '', $request->input('prop_building_area')),
-            'prop_certificate' => $request->input('prop_certificate'),
-            'prop_rent_status' => str_replace(',', '', $request->input('prop_rent_status')),
-            'prop_price' => str_replace(',', '', $request->input('prop_price')),
-            'prop_fee' => str_replace(',', '', $request->input('prop_fee')),
-            'prop_user_id' => $request->input('prop_user_id'),
-            'prop_owner_name' => $request->input('prop_owner_name'),
-            'prop_owner_contact' => $request->input('prop_owner_contact'),
-            'prop_notes' => $request->input('prop_notes'),
-            'prop_user_notes' => $request->input('prop_user_notes'),
+            'prop_name' => $request->input('prop_name') ?? "",
+            'prop_list_type_id' => $request->input('prop_list_type_id') ?? 0,
+            'prop_type_id' => $request->input('prop_type_id') ?? 0,
+            'prop_location_id' => $request->input('prop_location_id') ?? 0,
+            'prop_address' => $request->input('prop_address') ?? "",
+            'prop_bedroom' => $request->input('prop_bedroom') ?? 0,
+            'prop_bathroom' => $request->input('prop_bathroom') ?? 0,
+            'prop_maids_room' => $request->input('prop_maids_room') ?? 0,
+            'prop_floor' => $request->input('prop_floor') ?? 0,
+            'prop_phone_lines' => $request->input('prop_phone_lines') ?? 0,
+            'prop_electricity' => str_replace(',', '', $request->input('prop_electricity') ?? "0"),
+            'prop_direction_id' => $request->input('prop_direction_id') ?? 0,
+            'prop_water_src_id' => $request->input('prop_water_src_id') ?? 0,
+            'prop_surface_area' => str_replace(',', '', $request->input('prop_surface_area') ?? "0"),
+            'prop_building_area' => str_replace(',', '', $request->input('prop_building_area') ?? "0"),
+            'prop_certificate' => $request->input('prop_certificate') ?? "",
+            'prop_rent_status' => $request->input('prop_rent_status') ?? 0,
+            'prop_price' => str_replace(',', '', $request->input('prop_price') ?? "0"),
+            'prop_fee' => str_replace(',', '', $request->input('prop_fee') ?? "0"),
+            'prop_user_id' => $request->input('prop_user_id') ?? 0,
+            'prop_owner_name' => $request->input('prop_owner_name') ?? "",
+            'prop_owner_contact' => $request->input('prop_owner_contact') ?? "",
+            'prop_notes' => $request->input('prop_notes') ?? "",
+            'prop_user_notes' => $request->input('prop_user_notes') ?? "",
             'expired_at' => $request->input('expired_at'),
             'status' => 1,
             'prop_company_id' => \Auth::user()->company_id
@@ -188,6 +189,7 @@ class PropertyController extends Controller
     {
         $this->validate($request, [
             'prop_name' => 'required',
+            'prop_user_id' => 'required',
             'image' => 'image|mimes:jpeg,png,jpg|max:2048'
         ]);
 
@@ -195,32 +197,32 @@ class PropertyController extends Controller
 
         if(\Auth::user()->role_id == '1')
         {
-            $property->prop_list_type_id = $request->input('prop_list_type_id');
-            $property->prop_type_id = $request->input('prop_type_id');
-            $property->prop_location_id = $request->input('prop_location_id');
-            $property->prop_address = $request->input('prop_address');
-            $property->prop_bedroom = $request->input('prop_bedroom');
-            $property->prop_bathroom = $request->input('prop_bathroom');
-            $property->prop_maids_room = $request->input('prop_maids_room');
-            $property->prop_floor = $request->input('prop_floor');
-            $property->prop_phone_lines = $request->input('prop_phone_lines');
-            $property->prop_electricity = str_replace(',', '', $request->input('prop_electricity'));
-            $property->prop_direction_id = $request->input('prop_direction_id');
-            $property->prop_water_src_id = $request->input('prop_water_src_id');
-            $property->prop_surface_area = str_replace(',', '', $request->input('prop_surface_area'));
-            $property->prop_building_area = str_replace(',', '', $request->input('prop_building_area'));
-            $property->prop_certificate = $request->input('prop_certificate');
-            $property->prop_price = str_replace(',', '', $request->input('prop_price'));
-            $property->prop_fee = str_replace(',', '', $request->input('prop_fee'));
-            $property->prop_user_id = $request->input('prop_user_id');
-            $property->prop_owner_name = $request->input('prop_owner_name');
-            $property->prop_owner_contact = $request->input('prop_owner_contact');
+            $property->prop_list_type_id = $request->input('prop_list_type_id') ?? 0;
+            $property->prop_type_id = $request->input('prop_type_id') ?? 0;
+            $property->prop_location_id = $request->input('prop_location_id') ?? 0;
+            $property->prop_address = $request->input('prop_address') ?? "";
+            $property->prop_bedroom = $request->input('prop_bedroom') ?? 0;
+            $property->prop_bathroom = $request->input('prop_bathroom') ?? 0;
+            $property->prop_maids_room = $request->input('prop_maids_room') ?? 0;
+            $property->prop_floor = $request->input('prop_floor') ?? 0;
+            $property->prop_phone_lines = $request->input('prop_phone_lines') ?? 0;
+            $property->prop_electricity = str_replace(',', '', $request->input('prop_electricity') ?? "0");
+            $property->prop_direction_id = $request->input('prop_direction_id') ?? 0;
+            $property->prop_water_src_id = $request->input('prop_water_src_id') ?? 0;
+            $property->prop_surface_area = str_replace(',', '', $request->input('prop_surface_area') ?? "0");
+            $property->prop_building_area = str_replace(',', '', $request->input('prop_building_area') ?? "0");
+            $property->prop_certificate = $request->input('prop_certificate') ?? 0;
+            $property->prop_price = str_replace(',', '', $request->input('prop_price') ?? "0");
+            $property->prop_fee = str_replace(',', '', $request->input('prop_fee') ?? "0");
+            $property->prop_user_id = $request->input('prop_user_id') ?? 0;
+            $property->prop_owner_name = $request->input('prop_owner_name') ?? "";
+            $property->prop_owner_contact = $request->input('prop_owner_contact') ?? "";
             $property->expired_at = $request->input('expired_at');
         }
 
-        $property->prop_rent_status = $request->input('prop_rent_status');
-        $property->prop_notes = $request->input('prop_notes');
-        $property->prop_user_notes = $request->input('prop_user_notes');
+        $property->prop_rent_status = $request->input('prop_rent_status') ?? 0;
+        $property->prop_notes = $request->input('prop_notes') ?? "";
+        $property->prop_user_notes = $request->input('prop_user_notes') ?? "";
         $property->status = 1;
         $property->prop_company_id = \Auth::user()->company_id;
 
@@ -357,10 +359,11 @@ class PropertyController extends Controller
     {
         $download_prop_name = $request->input('download_prop_name');
         $property = Property::find($download_prop_name);
+        $marketing = User::find($property->prop_user_id);
 
         $file_name = $property->prop_name . '.pdf';
 
-        $pdf = \PDF::loadView('property.single_pdf', ['property' => $property]);
+        $pdf = \PDF::loadView('property.single_pdf', ['property' => $property, 'marketing' => $marketing]);
         return $pdf->setPaper('a4', 'portrait')->download($file_name);
     }
 

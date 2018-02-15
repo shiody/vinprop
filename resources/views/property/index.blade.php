@@ -106,9 +106,21 @@
                                 @foreach ($properties as $property)
                                     <tr>
                                         <td style="vertical-align: middle;">{{ $property->prop_name }}</td>
+                                        @if ($property->prop_list_type_id != 0)
                                         <td style="vertical-align: middle;">{{ $property->list_type->list_type_name }}</td>
+                                        @else
+                                        <td></td>
+                                        @endif
+                                        @if ($property->prop_type_id != 0)
                                         <td style="vertical-align: middle;">{{ $property->property_type->prop_type_name }}</td>
+                                        @else
+                                        <td></td>
+                                        @endif
+                                        @if ($property->prop_location_id != 0)
                                         <td style="vertical-align: middle;">{{ $property->location->location_name }}</td>
+                                        @else
+                                        <td></td>
+                                        @endif
                                         <td style="vertical-align: middle;">{{ $property->user->name }}</td>
                                         <td style="vertical-align: middle;">{{ \Carbon\Carbon::parse($property->created_at)->format('d-m-Y') }}</td>
                                         <td style="vertical-align: middle;">

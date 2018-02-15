@@ -12,10 +12,10 @@
                             <!-- title -->
                             <div class="row">
                                 <div class="col-md-10">
-                                    <h3 class="text-primary">Property Type</h3>
+                                    <h3 class="text-primary">Marketing Profile</h3>
                                 </div>
                                 <div class="col-md-2" style="text-align: right;">
-                                    <a href="{{ route('property_type.create') }}" class="btn btn-primary">
+                                    <a href="{{ route('marketing_profile.create') }}" class="btn btn-primary">
                                         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> create
                                     </a>
                                 </div>
@@ -25,28 +25,24 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                        <!-- property type table -->
+                        <!-- marketing table -->
                         <table class="table table-striped table-hover ">
                             <thead>
                                 <tr>
                                     <th>Name</th>
-                                    <th>Status</th>
-                                    <th>Created</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($property_types as $property_type)
+                                @foreach ($users as $user)
                                     <tr>
-                                        <td style="vertical-align: middle;">{{ $property_type->prop_type_name }}</td>
-                                        @if ($property_type->status == 1)
-                                        <td style="vertical-align: middle;">active</td>
-                                        @else
-                                        <td style="vertical-align: middle;">inactive</td>
-                                        @endif
-                                        <td style="vertical-align: middle;">{{ \Carbon\Carbon::parse($property_type->created_at)->format('d-m-Y') }}</td>
+                                        <td style="vertical-align: middle;">{{ $user->name }}</td>
+                                        <td style="vertical-align: middle;">{{ $user->email }}</td>
+                                        <td style="vertical-align: middle;">{{ $user->phone }}</td>
                                         <td style="vertical-align: middle;">
-                                            <a href="{{ route('property_type.edit', $property_type->prop_type_id) }}" class="btn btn-xs btn-warning btn-raised">
+                                            <a href="{{ route('marketing_profile.edit', $user->id) }}" class="btn btn-xs btn-warning btn-raised">
                                                 edit
                                             </a>
                                         </td>
@@ -55,7 +51,7 @@
                             </tbody>
                         </table>
                         <!-- pagination -->
-                        {{ $property_types->links() }}
+                        {{ $users->links() }}
                         </div>
                     </div>
                 </div>

@@ -39,6 +39,7 @@
                                         <label for="prop_list_type_id" class="col-md-2 control-label">List Type</label>
                                         <div class="col-md-5">
                                             <select class="form-control" id="prop_list_type_id" name="prop_list_type_id">
+                                                <option value="" selected>Choose List Type</option>
                                                 @foreach ($list_types as $list_type)
                                                 <option value="{{ $list_type->list_type_id }}" @if ($list_type->list_type_id == $property->prop_list_type_id) selected @endif>{{ $list_type->list_type_name }}</option>
                                                 @endforeach
@@ -50,6 +51,7 @@
                                         <label for="prop_type_id" class="col-md-2 control-label">Property Type</label>
                                         <div class="col-md-5">
                                             <select class="form-control" id="prop_type_id" name="prop_type_id">
+                                                <option value="" selected>Choose Property Type</option>
                                                 @foreach ($property_types as $property_type)
                                                 <option value="{{ $property_type->prop_type_id }}" @if ($property_type->prop_type_id == $property->prop_type_id) selected @endif>{{ $property_type->prop_type_name }}</option>
                                                 @endforeach
@@ -61,6 +63,7 @@
                                         <label for="prop_location_id" class="col-md-2 control-label">Location</label>
                                         <div class="col-md-5">
                                             <select class="form-control" id="prop_location_id" name="prop_location_id">
+                                                <option value="" selected>Choose Location</option>
                                                 @foreach ($locations as $location)
                                                 <option value="{{ $location->location_id }}" @if ($location->location_id == $property->prop_location_id) selected @endif>{{ $location->location_name }}</option>
                                                 @endforeach
@@ -124,6 +127,7 @@
                                         <label for="prop_floor" class="col-md-2 control-label">Floor</label>
                                         <div class="col-md-1">
                                             <select class="form-control" id="prop_floor" name="prop_floor">
+                                                <option value="0" @if ($property->prop_floor == 0) selected @endif>0</option>
                                                 <option value="1" @if ($property->prop_floor == 1) selected @endif>1</option>
                                                 <option value="2" @if ($property->prop_floor == 2) selected @endif>2</option>
                                                 <option value="3" @if ($property->prop_floor == 3) selected @endif>3</option>
@@ -160,6 +164,7 @@
                                         <label for="prop_water_src_id" class="col-md-2 control-label">Water Source</label>
                                         <div class="col-md-5">
                                             <select class="form-control" id="prop_water_src_id" name="prop_water_src_id">
+                                                <option value="" selected>Choose Water Source</option>
                                                 @foreach ($water_sources as $water_source)
                                                 <option value="{{ $water_source->water_src_id }}" @if ($water_source->water_src_id == $property->prop_water_src_id) selected @endif>{{ $water_source->water_src_name }}</option>
                                                 @endforeach
@@ -295,4 +300,13 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    $(document).on("keypress", ":input:not(textarea):not([type=submit])", function(event) {
+        if (event.keyCode == 13) {
+            event.preventDefault();
+        }
+    });
+</script>
+
 @endsection

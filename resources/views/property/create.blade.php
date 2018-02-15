@@ -36,6 +36,7 @@
                                         <label for="prop_list_type_id" class="col-md-2 control-label">List Type</label>
                                         <div class="col-md-5">
                                             <select class="form-control" id="prop_list_type_id" name="prop_list_type_id">
+                                                <option value="" selected>Choose List Type</option>
                                                 @foreach ($list_types as $list_type)
                                                 <option value="{{ $list_type->list_type_id }}">{{ $list_type->list_type_name }}</option>
                                                 @endforeach
@@ -47,6 +48,7 @@
                                         <label for="prop_type_id" class="col-md-2 control-label">Property Type</label>
                                         <div class="col-md-5">
                                             <select class="form-control" id="prop_type_id" name="prop_type_id">
+                                                <option value="" selected>Choose Property Type</option>
                                                 @foreach ($property_types as $property_type)
                                                 <option value="{{ $property_type->prop_type_id }}">{{ $property_type->prop_type_name }}</option>
                                                 @endforeach
@@ -58,6 +60,7 @@
                                         <label for="prop_location_id" class="col-md-2 control-label">Location</label>
                                         <div class="col-md-5">
                                             <select class="form-control" id="prop_location_id" name="prop_location_id">
+                                                <option value="" selected>Choose Location</option>
                                                 @foreach ($locations as $location)
                                                 <option value="{{ $location->location_id }}">{{ $location->location_name }}</option>
                                                 @endforeach
@@ -121,7 +124,8 @@
                                         <label for="prop_floor" class="col-md-2 control-label">Floor</label>
                                         <div class="col-md-1">
                                             <select class="form-control" id="prop_floor" name="prop_floor">
-                                                <option value="1" selected>1</option>
+                                                <option value="0" selected>0</option>
+                                                <option value="1">1</option>
                                                 <option value="2">2</option>
                                                 <option value="3">3</option>
                                                 <option value="4">4</option>
@@ -157,6 +161,7 @@
                                         <label for="prop_water_src_id" class="col-md-2 control-label">Water Source</label>
                                         <div class="col-md-5">
                                             <select class="form-control" id="prop_water_src_id" name="prop_water_src_id">
+                                                <option value="" selected>Choose Water Source</option>
                                                 @foreach ($water_sources as $water_source)
                                                 <option value="{{ $water_source->water_src_id }}">{{ $water_source->water_src_name }}</option>
                                                 @endforeach
@@ -281,4 +286,13 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    $(document).on("keypress", ":input:not(textarea):not([type=submit])", function(event) {
+        if (event.keyCode == 13) {
+            event.preventDefault();
+        }
+    });
+</script>
+
 @endsection

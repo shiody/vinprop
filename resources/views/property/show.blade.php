@@ -36,12 +36,19 @@
                             <!-- main info -->
                             <div class="row" style="margin-top: 1em; margin-bottom: 1em;">
                                 <div class="col-md-12">
+                                    @if ($property->prop_type_id != 0)
                                     <h4>{{ $property->property_type->prop_type_name }}</h4>
+                                    @endif
                                     <h4>
-                                        IDR {{ number_format($property->prop_price) }} ({{ $property->list_type->list_type_name }})
+                                        IDR {{ number_format($property->prop_price) }}
+                                        @if ($property->prop_list_type_id != 0)
+                                        ({{ $property->list_type->list_type_name }})
+                                        @endif
                                     </h4>
                                     <h4>{{ $property->prop_address }}</h4>
+                                    @if ($property->prop_location_id != 0)
                                     <h4>{{ $property->location->location_name }}</h4>
+                                    @endif
                                 </div>
                             </div>
                             <!-- details -->
@@ -73,7 +80,11 @@
                                 </tr>
                                 <tr>
                                     <td>Water Source</td>
+                                    @if ($property->prop_water_src_id != 0)
                                     <td>{{ $property->water_source->water_src_name }}</td>
+                                    @else
+                                    <td></td>
+                                    @endif
                                 </tr>
                                 <tr>
                                     <td>Surface Area</td>

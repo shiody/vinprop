@@ -49,13 +49,18 @@
                         @endif
 					</td>
 					<td>
-						<span class="title">{{ $property->prop_name }}</span>
+						<span class="title">{{ $property->prop_address }}</span>
 
 						<div class="header">
+							@if ($property->prop_type_id != 0)
 							{{ $property->property_type->prop_type_name }}<br/>
-							IDR {{ number_format($property->prop_price) }} ({{ $property->list_type->list_type_name }})<br/>
+							@endif
+							IDR {{ number_format($property->prop_price) }}
+							@if ($property->prop_list_type_id != 0)
+							({{ $property->list_type->list_type_name }})
+							@endif
+							<br/>
 							{{ $property->prop_address }}<br/>
-							{{ $property->location->location_name }}<br/>
 						</div>
 
 						<table>
@@ -85,7 +90,11 @@
 							</tr>
 							<tr>
 								<td>Water Source</td>
-								<td class="info">{{ $property->water_source->water_src_name }}</td>
+								@if ($property->prop_water_src_id != 0)
+                                <td class="info">{{ $property->water_source->water_src_name }}</td>
+                                @else
+                                <td></td>
+                                @endif
 							</tr>
 							<tr>
 								<td>Surface Area</td>
@@ -116,25 +125,35 @@
 				<tr>
 					<td colspan="2">
 					<table>
+						@if ($marketing->company_id != null)
 						<tr>
 							<td style="vertical-align: top;">
-								<img src="{{ ltrim(Auth::user()->company->company_logo, '/') }}">
+								<img src="{{ ltrim($marketing->company->company_logo, '/') }}">
 								<br/>
 								<p>
-									Mobile: {{ Auth::user()->phone }}
+									Mobile: {{ $marketing->phone }}
 								</p>
 							</td>
 							<td>
-								<h2>{{ Auth::user()->name }}</h2>
+								<h2>{{ $marketing->name }}</h2>
 								<p>
-									{{ Auth::user()->company->company_name }}<br/>
-									{{ Auth::user()->company->company_address }}<br/>
-									Phone: {{ Auth::user()->company->company_phone }}<br/>
-									Fax: {{ Auth::user()->company->company_fax }}<br/>
-									Email: {{ Auth::user()->company->company_email }}
+									{{ $marketing->company->company_name }}<br/>
+									{{ $marketing->company->company_address }}<br/>
+									Phone: {{ $marketing->company->company_phone }}<br/>
+									Fax: {{ $marketing->company->company_fax }}<br/>
+									Email: {{ $marketing->company->company_email }}
 								</p>
 							</td>
 						</tr>
+						@else
+						<tr>
+							<td style="vertical-align: top;">Contact: </td>
+							<td>
+								{{ $marketing->name }}<br/>
+								{{ $marketing->phone }}
+							</td>
+						</tr>
+						@endif
 					</table>
 					</td>
 				</tr>
